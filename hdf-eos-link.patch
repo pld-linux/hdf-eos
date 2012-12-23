@@ -1,0 +1,15 @@
+--- hdfeos/src/Makefile.am.orig	2008-02-19 19:43:18.000000000 +0100
++++ hdfeos/src/Makefile.am	2012-12-22 22:11:30.172900935 +0100
+@@ -5,11 +5,9 @@
+ 
+ INCLUDES=-I$(top_srcdir)/include/
+ 
+-# Set LDFLAGS to alow the HDF-EOS library to use extern variables from HDF4
+-LDFLAGS=-Wl,-single_module
+-
+ # Build HDF-EOS2
+ lib_LTLIBRARIES=libhdfeos.la
++libhdfeos_la_LIBADD=$(top_builddir)/gctp/src/libGctp.la
+ 
+ # Source files for library
+ libhdfeos_la_SOURCES=EHapi.c GDapi.c PTapi.c SWapi.c
