@@ -6,15 +6,15 @@
 Summary:	HDF-EOS 2 library
 Summary(pl.UTF-8):	Biblioteka HDF-EOS 2
 Name:		hdf-eos
-Version:	2.18.1.00
+Version:	2.19.1.00
 Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.18v1.00.tar.Z
-# Source0-md5:	755a75c7ce82f0df943c81bc94b32fe4
+Source0:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00.tar.Z
+# Source0-md5:	b8648484fc78a2db7073dd603f3fb251
 # needed for auto* rebuild
-Source1:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.18v1.00_TestDriver.tar.Z
-# Source1-md5:	d95c510f24a598e6eeeefdf92009ba15
+Source1:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00_TestDriver.tar.Z
+# Source1-md5:	a8d46eddb8a6a755f554b50414ee951b
 Patch0:		%{name}-cc.patch
 Patch1:		%{name}-link.patch
 URL:		http://hdfeos.org/software/library.php#HDF-EOS2
