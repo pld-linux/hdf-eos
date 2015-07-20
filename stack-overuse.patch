@@ -1,0 +1,10 @@
+--- hdfeos/src/SWapi.c~	2015-07-20 07:48:31.000000000 +0000
++++ hdfeos/src/SWapi.c	2015-07-20 07:58:49.803235973 +0000
+@@ -14023,6 +14023,7 @@
+ 
+    /* Get "Track" (first) Dimension from geo dimlist */
+   /* ---------------------------------------------- */
++  memset(ptr,0,sizeof(ptr));
+   nDim = EHparsestr(geodim, ',', ptr, slen);
+ 
+   for(iDim=0; iDim<8; iDim++)

@@ -7,7 +7,7 @@ Summary:	HDF-EOS 2 library
 Summary(pl.UTF-8):	Biblioteka HDF-EOS 2
 Name:		hdf-eos
 Version:	2.19.1.00
-Release:	1
+Release:	2
 License:	MIT-like
 Group:		Libraries
 Source0:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00.tar.Z
@@ -17,6 +17,7 @@ Source1:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00_T
 # Source1-md5:	a8d46eddb8a6a755f554b50414ee951b
 Patch0:		%{name}-cc.patch
 Patch1:		%{name}-link.patch
+Patch2:		stack-overuse.patch
 URL:		http://hdfeos.org/software/library.php#HDF-EOS2
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
@@ -80,6 +81,7 @@ Statyczna biblioteka HDF-EOS 2.
 %setup -q -n hdfeos -b1
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
