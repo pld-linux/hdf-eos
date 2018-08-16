@@ -7,7 +7,7 @@ Summary:	HDF-EOS 2 library
 Summary(pl.UTF-8):	Biblioteka HDF-EOS 2
 Name:		hdf-eos
 Version:	2.19.1.00
-Release:	2
+Release:	3
 License:	MIT-like
 Group:		Libraries
 Source0:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00.tar.Z
