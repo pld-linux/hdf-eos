@@ -6,27 +6,28 @@
 Summary:	HDF-EOS 2 library
 Summary(pl.UTF-8):	Biblioteka HDF-EOS 2
 Name:		hdf-eos
-Version:	2.19.1.00
-Release:	3
+Version:	2.20.1.00
+Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00.tar.Z
-# Source0-md5:	b8648484fc78a2db7073dd603f3fb251
+Source0:	https://observer.gsfc.nasa.gov/ftp/edhs/hdfeos/latest_release/HDF-EOS2.20v1.00.tar.Z
+# Source0-md5:	4697174a9296aa3d921915b75b3362d1
 # needed for auto* rebuild
-Source1:	ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00_TestDriver.tar.Z
-# Source1-md5:	a8d46eddb8a6a755f554b50414ee951b
+Source1:	https://observer.gsfc.nasa.gov/ftp/edhs/hdfeos/latest_release/HDF-EOS2.20v1.00_TestDriver.tar.Z
+# Source1-md5:	c15028e666f0f7c794edba529af8e158
 Patch0:		%{name}-cc.patch
 Patch1:		%{name}-link.patch
 Patch2:		stack-overuse.patch
 URL:		http://hdfeos.org/software/library.php#HDF-EOS2
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
-BuildRequires:	hdf-devel >= 4
+BuildRequires:	hdf-devel >= 4.2.13
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtool
 %{?with_szip:BuildRequires:	szip-devel}
-BuildRequires:	zlib-devel
-Requires:	hdf >= 4
+BuildRequires:	zlib-devel >= 1.2.11
+Requires:	hdf >= 4.2.13
+Requires:	zlib >= 1.2.11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -54,10 +55,10 @@ Summary:	Header files for HDF-EOS 2 library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki HDF-EOS 2
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	hdf-devel >= 4
+Requires:	hdf-devel >= 4.2.13
 Requires:	libjpeg-devel
 %{?with_szip:Requires:	szip-devel}
-Requires:	zlib-devel
+Requires:	zlib-devel >= 1.2.11
 
 %description devel
 Header files for HDF-EOS 2 library.
