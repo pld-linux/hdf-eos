@@ -1,0 +1,27 @@
+--- hdf-eos2-3.0/gctp/src/br_gctp.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/gctp/src/br_gctp.c	2024-12-22 09:58:42.845838630 +0100
+@@ -2,6 +2,9 @@
+ #ifdef unix
+ 
+ 
++int gctp(double *incoor,long *insys,long *inzone,double *inparm,long *inunit,long *indatum,long *ipr,char *efile,long *jpr,char *pfile,double *outcoor,
++     long *outsys,long *outzone,double *outparm,long *outunit,long *outdatum,char fn27[],char fn83[],long *iflg);
++
+ /*  Fortran bridge routine for the UNIX */
+ 
+ void gctp_(incoor,insys,inzone,inparm,inunit,indatum,ipr,efile,jpr,pfile,
+@@ -22,11 +25,13 @@ long *outsys;
+ long *outzone;
+ double *outparm;
+ long *outunit;
++char fn27[];
++char fn83[];
+ long *iflg;
+ 
+ {
+ gctp(incoor,insys,inzone,inparm,inunit,indatum,ipr,efile,jpr,pfile,outcoor,
+-     outsys,outzone,outparm,outunit,fn27,fn83,iflg);
++     outsys,outzone,outparm,outunit,(void*)0 /*FIXME: outdatum*/,fn27,fn83,iflg);
+ 
+ return;
+ }

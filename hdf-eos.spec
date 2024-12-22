@@ -15,6 +15,8 @@ Source0:	https://git.earthdata.nasa.gov/projects/DAS/repos/hdfeos/raw/hdf-eos2-%
 Patch0:		hdf-eos2-config.patch
 Patch1:		%{name}-link.patch
 Patch2:		stack-overuse.patch
+Patch3:		hdf-eos2-includes.patch
+Patch4:		hdf-eos2-types.patch
 URL:		http://hdfeos.org/software/library.php#HDF-EOS2
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
@@ -81,6 +83,8 @@ Statyczna biblioteka HDF-EOS 2.
 %patch -P0 -p1
 %patch -P1 -p1
 %patch -P2 -p1
+%patch -P3 -p1
+%patch -P4 -p1
 
 %build
 %{__libtoolize}
