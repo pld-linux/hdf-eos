@@ -1,21 +1,18 @@
 #
 # Conditional build:
 %bcond_without	szip		# SZIP support (must match hdf build bcond)
-%bcond_without	tests		# don't perform "make check"
+%bcond_without	tests		# unit tests
 #
 Summary:	HDF-EOS 2 library
 Summary(pl.UTF-8):	Biblioteka HDF-EOS 2
 Name:		hdf-eos
-Version:	2.20.1.00
+Version:	3.0
 Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	https://observer.gsfc.nasa.gov/ftp/edhs/hdfeos/latest_release/HDF-EOS2.20v1.00.tar.Z
-# Source0-md5:	4697174a9296aa3d921915b75b3362d1
-# needed for auto* rebuild
-Source1:	https://observer.gsfc.nasa.gov/ftp/edhs/hdfeos/latest_release/HDF-EOS2.20v1.00_TestDriver.tar.Z
-# Source1-md5:	c15028e666f0f7c794edba529af8e158
-Patch0:		%{name}-cc.patch
+Source0:	https://git.earthdata.nasa.gov/projects/DAS/repos/hdfeos/raw/hdf-eos2-%{version}-src.tar.gz?at=3128a738021501c821549955f6c78348e5f33850#/hdf-eos2-%{version}-src.tar.gz
+# Source0-md5:	1b8660bac298c0ae6c2c56e76fbe8623
+Patch0:		hdf-eos2-config.patch
 Patch1:		%{name}-link.patch
 Patch2:		stack-overuse.patch
 URL:		http://hdfeos.org/software/library.php#HDF-EOS2
@@ -24,9 +21,10 @@ BuildRequires:	automake
 BuildRequires:	hdf-devel >= 4.2.13
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtool
-%{?with_szip:BuildRequires:	szip-devel}
+%{?with_szip:BuildRequires:	libaec-szip-devel >= 1.0}
 BuildRequires:	zlib-devel >= 1.2.11
 Requires:	hdf >= 4.2.13
+%{?with_szip:Requires:	libaec-szip >= 1.0}
 Requires:	zlib >= 1.2.11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,7 +55,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	hdf-devel >= 4.2.13
 Requires:	libjpeg-devel
-%{?with_szip:Requires:	szip-devel}
+%{?with_szip:Requires:	libaec-szip-devel >= 1.0}
 Requires:	zlib-devel >= 1.2.11
 
 %description devel
@@ -79,10 +77,10 @@ Static HDF-EOS 2 library.
 Statyczna biblioteka HDF-EOS 2.
 
 %prep
-%setup -q -n hdfeos -b1
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%setup -q -n hdf-eos2-%{version}
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
 
 %build
 %{__libtoolize}
@@ -93,9 +91,7 @@ Statyczna biblioteka HDF-EOS 2.
 # as hdf 4 extension, use the same include dir as hdf 4
 %configure \
 	--includedir=%{_includedir}/hdf \
-	--enable-install-include \
 	--enable-shared \
-	--with-hdf4=%{_includedir}/hdf, \
 	%{?with_szip:--with-szlib}
 
 %{__make}
@@ -116,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/{HDFEOS-DEFINITION.TXT,README}
+%doc doc/README
 %attr(755,root,root) %{_libdir}/libGctp.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libGctp.so.0
 %attr(755,root,root) %{_libdir}/libhdfeos.so.*.*.*
@@ -128,17 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libhdfeos.so
 %{_libdir}/libGctp.la
 %{_libdir}/libhdfeos.la
-%{_includedir}/hdf/HDFEOSVersion.h
-%{_includedir}/hdf/HE2_config.h
 %{_includedir}/hdf/HdfEosDef.h
-%{_includedir}/hdf/bcea.h
-%{_includedir}/hdf/cfortHdf.h
-%{_includedir}/hdf/cproj.h
-%{_includedir}/hdf/cproj_prototypes.h
-%{_includedir}/hdf/ease.h
-%{_includedir}/hdf/gctp_prototypes.h
-%{_includedir}/hdf/isin.h
-%{_includedir}/hdf/proj.h
 
 %files static
 %defattr(644,root,root,755)
