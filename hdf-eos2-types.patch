@@ -25,3 +25,291 @@
  
  return;
  }
+--- hdf-eos2-3.0/samples/AppendField.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/AppendField.c	2024-12-22 10:27:58.486179374 +0100
+@@ -1,4 +1,5 @@
+ #include "hdf.h"
++#include "HdfEosDef.h"
+ 
+ /*
+  * In this example we will demonstrate the use of the unlimited dimension
+@@ -6,7 +7,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i;
+--- hdf-eos2-3.0/samples/DefineFields.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/DefineFields.c	2024-12-22 10:22:20.120853076 +0100
+@@ -7,7 +7,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i, j;
+--- hdf-eos2-3.0/samples/DefineGDflds.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/DefineGDflds.c	2024-12-22 10:28:16.979621633 +0100
+@@ -7,7 +7,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i, j;
+--- hdf-eos2-3.0/samples/DefineLevels.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/DefineLevels.c	2024-12-22 10:29:03.426561787 +0100
+@@ -1,4 +1,5 @@
+ #include "mfhdf.h"
++#include "HdfEosDef.h"
+ 
+ /* DefineLevels */
+ 
+@@ -8,7 +9,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status;
+@@ -115,7 +116,7 @@ main()
+ 	    printf("\t\tError: Cannot define level \"Observations\"\n");
+ 	    return -1;
+ 	  }
+-	printf("status from PTdeflevel: %d\n");
++	printf("status from PTdeflevel: %d\n", status);
+ 	
+ 	status = PTdeflinkage(PTid_fixed, "Desc-Loc", "Observations", "ID");
+ 	if (status == -1)
+@@ -123,9 +124,9 @@ main()
+ 	    printf("\t\tError: Cannot define linkage \"Desc-Loc\"\n");
+ 	    return -1;
+ 	  }
+-	printf("status from PTdeflinkage: %d\n");
++	printf("status from PTdeflinkage: %d\n", status);
+ 	status = PTdetach(PTid_fixed);
+-	printf("status from PTdetach: %d\n");
++	printf("status from PTdetach: %d\n", status);
+ 
+ 
+ 
+--- hdf-eos2-3.0/samples/InquireGrid.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/InquireGrid.c	2024-12-22 10:29:25.233356834 +0100
+@@ -8,7 +8,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i;
+--- hdf-eos2-3.0/samples/InquireSwath.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/InquireSwath.c	2024-12-22 10:29:45.900145169 +0100
+@@ -7,7 +7,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i;
+--- hdf-eos2-3.0/samples/ReadFields.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/ReadFields.c	2024-12-22 10:30:15.616986784 +0100
+@@ -1,4 +1,5 @@
+ #include "hdf.h"
++#include "HdfEosDef.h"
+ 
+ 
+ /*
+@@ -9,7 +10,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i, j, k, start[2],stride[2],count[2];
+--- hdf-eos2-3.0/samples/ReadGDflds.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/ReadGDflds.c	2024-12-22 10:30:36.950445711 +0100
+@@ -1,4 +1,5 @@
+ #include "hdf.h"
++#include "HdfEosDef.h"
+ 
+ 
+ /*
+@@ -7,7 +8,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            i, j, status;
+--- hdf-eos2-3.0/samples/ReadLevels.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/ReadLevels.c	2024-12-22 10:31:03.447268370 +0100
+@@ -1,9 +1,10 @@
+ #include "mfhdf.h"
++#include "HdfEosDef.h"
+ #include <math.h>
+ 
+ /* ReadLevels */
+ 
+-main()
++int main()
+ {
+     intn            status, i, j;
+     
+--- hdf-eos2-3.0/samples/SetupGrid.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/SetupGrid.c	2024-12-22 10:31:19.247361387 +0100
+@@ -8,7 +8,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i, j;
+--- hdf-eos2-3.0/samples/SetupPoint.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/SetupPoint.c	2024-12-22 10:31:39.207478896 +0100
+@@ -1,8 +1,9 @@
+ #include "hdf.h"
++#include "HdfEosDef.h"
+ 
+ /* SetupPoint */
+ 
+-main()
++int main()
+ {
+ 
+     intn            status;
+--- hdf-eos2-3.0/samples/SetupSwath.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/SetupSwath.c	2024-12-22 10:27:17.072602115 +0100
+@@ -1,11 +1,12 @@
+ #include "mfhdf.h"
++#include "HdfEosDef.h"
+ /*
+  * In this example we will (1) open an HDF file, (2) create the swath
+  * interface within the file and (3) define the swath field dimensions.
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i, j;
+--- hdf-eos2-3.0/samples/SubsetGrid.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/SubsetGrid.c	2024-12-22 10:32:22.144398339 +0100
+@@ -1,4 +1,5 @@
+ #include "hdf.h"
++#include "HdfEosDef.h"
+ #include <math.h>
+ 
+ /*
+@@ -7,7 +8,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            i, j, status;
+--- hdf-eos2-3.0/samples/SubsetPoint.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/SubsetPoint.c	2024-12-22 10:32:45.671203513 +0100
+@@ -1,7 +1,8 @@
+ #include "hdf.h"
++#include "HdfEosDef.h"
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            i, status;
+--- hdf-eos2-3.0/samples/SubsetSwath.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/SubsetSwath.c	2024-12-22 10:33:03.191306657 +0100
+@@ -7,7 +7,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            i, j, status;
+--- hdf-eos2-3.0/samples/UpdateLevels.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/UpdateLevels.c	2024-12-22 10:33:24.391431465 +0100
+@@ -1,8 +1,9 @@
+ #include "mfhdf.h"
++#include "HdfEosDef.h"
+ 
+ /*   UpdateLevels */
+ 
+-main()
++int main()
+ {
+ 
+     intn            status, i, j;
+--- hdf-eos2-3.0/samples/WriteFields.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/WriteFields.c	2024-12-22 10:27:34.456037837 +0100
+@@ -1,4 +1,5 @@
+ #include "hdf.h"
++#include "HdfEosDef.h"
+ 
+ 
+ /*
+@@ -8,7 +9,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            i, j, k, status, track, xtrack, start[3], count[3];
+--- hdf-eos2-3.0/samples/WriteGDflds.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/WriteGDflds.c	2024-12-22 10:33:45.321554685 +0100
+@@ -1,4 +1,5 @@
+ #include "hdf.h"
++#include "HdfEosDef.h"
+ 
+ 
+ /*
+@@ -8,7 +9,7 @@
+  */
+ 
+ 
+-main()
++int main()
+ {
+ 
+     intn            i, j, status;
+--- hdf-eos2-3.0/samples/WriteLevels.c.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/samples/WriteLevels.c	2024-12-22 10:34:18.145081256 +0100
+@@ -1,9 +1,10 @@
+ #include "mfhdf.h"
++#include "HdfEosDef.h"
+ #include <math.h>
+ 
+ /* WriteLevels */
+ 
+-main()
++int main()
+ {
+     intn            status, i, j;
+     int16           wgt;
