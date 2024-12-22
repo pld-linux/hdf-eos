@@ -1,0 +1,69 @@
+--- hdf-eos2-3.0/src/GDapi.c.orig	2024-12-22 11:00:37.837713015 +0100
++++ hdf-eos2-3.0/src/GDapi.c	2024-12-22 12:16:05.540752097 +0100
+@@ -212,7 +212,7 @@ intn GDSDfldsrch(int32, int32, const cha
+ intn GDwrrdfield(int32, const char *, const char *, int32 [], int32 [], int32 [], VOIDP datbuf);
+ intn GDwrfld(int32, char *, int32 [], int32 [], int32 [], VOIDP);
+ intn GDrdfld(int32, char *, int32 [], int32 [], int32 [], VOIDP);
+-intn GDwrrdattr(int32, char *, int32, int32, const char *, VOIDP);
++intn GDwrrdattr(int32, const char *, int32, int32, const char *, VOIDP);
+ intn GDreginfo(int32, int32, char *, int32 *, int32 *, int32 [], int32 *,float64 [], float64 []);
+ intn  GDgetdefaults(int32, int32, float64 [], int32, float64 [], float64 []);
+ int32 GDdefvrtreg(int32, int32, char *, float64 []);
+@@ -6423,7 +6423,7 @@ GDrdfld(int32 gridID, char *fieldname, i
+ |  END_PROLOG                                                                 |
+ -----------------------------------------------------------------------------*/
+ intn
+-GDwrrdattr(int32 gridID, char *attrname, int32 numbertype, int32 count,
++GDwrrdattr(int32 gridID, const char *attrname, int32 numbertype, int32 count,
+ 	   const char *wrcode, VOIDP datbuf)
+ 
+ {
+@@ -6526,7 +6526,7 @@ GDwriteattr(int32 gridID, char *attrname
+ |  END_PROLOG                                                                 |
+ -----------------------------------------------------------------------------*/
+ intn
+-GDreadattr(int32 gridID, char *attrname, VOIDP datbuf)
++GDreadattr(int32 gridID, const char *attrname, VOIDP datbuf)
+ {
+     intn            status = 0;	/* routine return status variable */
+     int32           dum = 0;	/* dummy variable */
+@@ -6577,7 +6577,7 @@ GDreadattr(int32 gridID, char *attrname,
+ |  END_PROLOG                                                                 |
+ -----------------------------------------------------------------------------*/
+ intn
+-GDattrinfo(int32 gridID, char *attrname, int32 * numbertype, int32 * count)
++GDattrinfo(int32 gridID, const char *attrname, int32 * numbertype, int32 * count)
+ {
+     intn            status = 0;	/* routine return status variable */
+ 
+@@ -7385,7 +7385,7 @@ GDsetfillvalue(int32 gridID, char *field
+ |  END_PROLOG                                                                 |
+ -----------------------------------------------------------------------------*/
+ intn
+-GDgetfillvalue(int32 gridID, char *fieldname, VOIDP fillval)
++GDgetfillvalue(int32 gridID, const char *fieldname, VOIDP fillval)
+ {
+     intn            status;	/* routine return status variable */
+ 
+--- hdf-eos2-3.0/include/HdfEosDef.h.orig	2021-05-18 13:55:16.000000000 +0200
++++ hdf-eos2-3.0/include/HdfEosDef.h	2024-12-22 12:18:14.554828764 +0100
+@@ -210,8 +210,8 @@ intn GDwritefield(int32, const char *,
+ 	     int32 [], int32 [], int32 [], VOIDP);
+ intn GDreadfield(int32, const char *, int32 [], int32 [], int32 [], VOIDP);
+ intn GDwriteattr(int32, char *, int32 , int32, VOIDP);
+-intn GDreadattr(int32, char *, VOIDP);
+-intn GDattrinfo(int32, char *, int32 *, int32 *);
++intn GDreadattr(int32, const char *, VOIDP);
++intn GDattrinfo(int32, const char *, int32 *, int32 *);
+ int32 GDinqdims(int32, char *, int32 []);
+ int32 GDinqfields(int32, char *, int32 [], int32 []);
+ int32 GDinqattrs(int32, char *, int32 *);
+@@ -228,7 +228,7 @@ intn GDgetpixels(int32, int32, float64 [
+ int32 GDgetpixvalues(int32, int32, int32 [], int32 [], char *, VOIDP);
+ int32 GDinterpolate(int32, int32, float64 [], float64 [], char *, float64 []);
+ intn GDsetfillvalue(int32, char *, VOIDP);
+-intn GDgetfillvalue(int32, char *, VOIDP);
++intn GDgetfillvalue(int32, const char *, VOIDP);
+ intn GDdetach(int32);
+ intn GDclose(int32);
+ 

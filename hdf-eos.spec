@@ -7,7 +7,7 @@ Summary:	HDF-EOS 2 library
 Summary(pl.UTF-8):	Biblioteka HDF-EOS 2
 Name:		hdf-eos
 Version:	3.0
-Release:	1
+Release:	2
 License:	MIT-like
 Group:		Libraries
 Source0:	https://git.earthdata.nasa.gov/projects/DAS/repos/hdfeos/raw/hdf-eos2-%{version}-src.tar.gz?at=3128a738021501c821549955f6c78348e5f33850#/hdf-eos2-%{version}-src.tar.gz
@@ -17,6 +17,7 @@ Patch1:		%{name}-link.patch
 Patch2:		stack-overuse.patch
 Patch3:		hdf-eos2-includes.patch
 Patch4:		hdf-eos2-types.patch
+Patch5:		hdf-eos2-api-const.patch
 URL:		http://hdfeos.org/software/library.php#HDF-EOS2
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
@@ -85,6 +86,7 @@ Statyczna biblioteka HDF-EOS 2.
 %patch -P2 -p1
 %patch -P3 -p1
 %patch -P4 -p1
+%patch -P5 -p1
 
 %build
 %{__libtoolize}
